@@ -1,6 +1,6 @@
 {
   "name": "react-icon-svg-symbol",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple icon component for React using SVG Symbol.",
   "main": "dist/index.js",
   "author": "Ryan Chu <ryaneof@gmail.com>",
