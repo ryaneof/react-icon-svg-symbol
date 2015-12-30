@@ -1,8 +1,7 @@
 import gulp from 'gulp';
-
-const babel = require('gulp-babel');
-const eslint = require('gulp-eslint');
-const rename = require('gulp-rename');
+import babel from 'gulp-babel';
+import eslint from 'gulp-eslint';
+import rename from 'gulp-rename';
 
 gulp.task('lint', () => {
   return gulp.src([
@@ -14,13 +13,21 @@ gulp.task('lint', () => {
 });
 
 gulp.task('build', () => {
-  return gulp.src('./src/index.jsx')
+  return gulp.src('./src/**/*.*')
   .pipe(babel({
     presets: [
       'es2015',
       'react'
     ]
   }))
-  .pipe(rename('index.js'))
+  .pipe(rename(function (path) {
+    path.dirname = '';
+    path.extname = '.js';
+    return path;
+  }))
   .pipe(gulp.dest('./dist/'))
+});
+
+gulp.task('debug', ['build'], () => {
+  gulp.watch('./src/**/*', ['build']);
 });
