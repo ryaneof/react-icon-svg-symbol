@@ -7,10 +7,18 @@ class SVGResourceHelper {
     this.requests[resourceURL].state = 'loading';
     this.requests[resourceURL].callbacks = [callback];
 
-    xhr = new XMLHttpRequest();
+    if (window.XMLHttpRequest) {
+      Request = new XMLHttpRequest();
+      if (Request.withCredentials !== undefined) {
+        Request = XMLHttpRequest;
+      } else {
+        Request = XDomainRequest || undefined;
+      }
+    }
+
+    xhr = new Request();
 
     xhr.onload = () => {
-
       xhr.onload = null;
 
       let fragment = document.createDocumentFragment();
@@ -47,7 +55,6 @@ class SVGResourceHelper {
     if ('withCredentials' in xhr) {
       xhr.open('GET', resourceURL, true);
     } else if (typeof XDomainRequest !== 'undefined') {
-      xhr = new XDomainRequest();
       xhr.open('GET', resourceURL);
     } else {
       xhr = null;
@@ -63,7 +70,7 @@ class SVGResourceHelper {
     window.__ReactIconSVGSymbolResourceRequests = this.requests;
 
     if (!resourceURL.length) {
-      console.log('Resource came along with the document, abort loading');
+      // console.log('Resource came along with the document, abort loading');
       return;
     }
 
@@ -73,17 +80,17 @@ class SVGResourceHelper {
     }
 
     switch (this.requests[resourceURL].state) {
-      case 'loaded':
-        callback();
-        break;
+    case 'loaded':
+      callback();
+      break;
 
-      case 'loading':
-        this.requests[resourceURL].callbacks.push(callback);
-        break;
+    case 'loading':
+      this.requests[resourceURL].callbacks.push(callback);
+      break;
 
-      default:
-        console.log('Resource request is error or timeout or lost..')
-        break;
+    default:
+      // console.log('Resource request is error or timeout or lost..')
+      break;
     }
   }
 }

@@ -49,12 +49,12 @@ export default React.createClass({
         SVGResourceHelper.load(this.props.fileURL, () => {
           this.setState({
             xlinkHref: `#${ this.props.symbolId }`
-          })
-        })
+          });
+        });
       }
 
     } else {
-      console.log('Older browsers which don\'t even support <use> element, we\'ll deal with that later');
+      // console.log('Older browsers which don\'t even support <use> element, we\'ll deal with that later');
     }
   },
 
