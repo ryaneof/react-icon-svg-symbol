@@ -1,6 +1,6 @@
 {
   "name": "react-icon-svg-symbol",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple icon component for React using SVG Symbol.",
   "main": "dist/index.js",
   "author": "Ryan Chu <ryaneof@gmail.com>",
@@ -10,12 +10,13 @@
     "url": "git@github.com:ryaneof/react-icon-svg-symbol.git"
   },
   "scripts": {
-    "build": "./node_modules/.bin/gulp build",
+    "build": "gulp build",
+    "lint": "gulp lint",
     "prepublish": "npm run build",
     "test": "babel-node test/index.js"
   },
   "peerDependencies": {
-    "react": "^0.14.3"
+    "react": "^0.14.5"
   },
   "devDependencies": {
     "babel": "^6.3.26",
