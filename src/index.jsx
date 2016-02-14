@@ -59,7 +59,7 @@ export default React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.symbolId === this.props.symbolId) {
+    if (nextProps.symbolId === this.props.symbolId && nextProps.fileURL === this.props.fileURL) {
       return;
     }
 
