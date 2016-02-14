@@ -77,8 +77,14 @@ export default React.createClass({
     })
   },
 
-  render() {
+  shouldComponentUpdate(nextProps, nextState) {
+    return !(nextProps.symbolId === this.props.symbolId &&
+        nextProps.fileURL === this.props.fileURL &&
+        nextProps.iconClassName === this.props.iconClassName &&
+        nextState.xlinkHref === this.state.xlinkHref);
+  },
 
+  render() {
     return (
       <svg className={ this.props.iconClassName }>
         <use xlinkHref={ this.state.xlinkHref } ref="useElement" />
