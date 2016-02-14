@@ -12,11 +12,11 @@ export default React.createClass({
   },
 
   getInitialState() {
-    let fileURL = this.props.fileURL || '';
-    let xlinkHref = `${ fileURL }#${ this.props.symbolId }`;
+    const fileURL = this.props.fileURL || '';
+    const xlinkHref = `${ fileURL }#${ this.props.symbolId }`;
 
     return {
-      xlinkHref: xlinkHref
+      xlinkHref
     };
   },
 
@@ -56,6 +56,25 @@ export default React.createClass({
     } else {
       // console.log('Older browsers which don\'t even support <use> element, we\'ll deal with that later');
     }
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.symbolId === this.props.symbolId) {
+      return;
+    }
+
+    const currentXLinkHref = this.state.xlinkHref;
+    let nextXLinkHref = '';
+
+    if (currentXLinkHref.indexOf('#') === 0 && nextProps.fileURL === this.props.fileURL) {
+      nextXLinkHref = `#${ nextProps.symbolId }`;
+    } else {
+      nextXLinkHref = `${ nextProps.fileURL }#${ nextProps.symbolId }`;
+    }
+
+    this.setState({
+      xlinkHref: nextXLinkHref
+    })
   },
 
   render() {
