@@ -12,11 +12,11 @@ export default React.createClass({
   },
 
   getInitialState() {
-    let fileURL = this.props.fileURL || '';
-    let xlinkHref = `${ fileURL }#${ this.props.symbolId }`;
+    const fileURL = this.props.fileURL || '';
+    const xlinkHref = `${ fileURL }#${ this.props.symbolId }`;
 
     return {
-      xlinkHref: xlinkHref
+      xlinkHref
     };
   },
 
@@ -58,8 +58,33 @@ export default React.createClass({
     }
   },
 
-  render() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.symbolId === this.props.symbolId && nextProps.fileURL === this.props.fileURL) {
+      return;
+    }
 
+    const currentXLinkHref = this.state.xlinkHref;
+    let nextXLinkHref = '';
+
+    if (currentXLinkHref.indexOf('#') === 0 && nextProps.fileURL === this.props.fileURL) {
+      nextXLinkHref = `#${ nextProps.symbolId }`;
+    } else {
+      nextXLinkHref = `${ nextProps.fileURL }#${ nextProps.symbolId }`;
+    }
+
+    this.setState({
+      xlinkHref: nextXLinkHref
+    })
+  },
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !(nextProps.symbolId === this.props.symbolId &&
+        nextProps.fileURL === this.props.fileURL &&
+        nextProps.iconClassName === this.props.iconClassName &&
+        nextState.xlinkHref === this.state.xlinkHref);
+  },
+
+  render() {
     return (
       <svg className={ this.props.iconClassName }>
         <use xlinkHref={ this.state.xlinkHref } ref="useElement" />
