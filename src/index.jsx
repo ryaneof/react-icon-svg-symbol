@@ -74,7 +74,7 @@ export default React.createClass({
 
     this.setState({
       xlinkHref: nextXLinkHref
-    })
+    });
   },
 
   shouldComponentUpdate(nextProps, nextState) {
