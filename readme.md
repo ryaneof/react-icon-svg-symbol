@@ -12,7 +12,7 @@ A simple icon component for React using [SVG Symbol](https://css-tricks.com/svg-
 ## Peer Dependencies
 
 ```
-React v0.14.*
+React v15.3.2
 ```
 
 ## Usage
