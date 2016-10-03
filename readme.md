@@ -1,6 +1,10 @@
 # React Icon SVG Symbol
 
-A simple icon component for React using [SVG Symbol](https://css-tricks.com/svg-symbol-good-choice-icons/).
+[![build status](https://img.shields.io/travis/ryaneof/react-icon-svg-symbol/master.svg?style=flat-square)](https://travis-ci.org/ryaneof/react-icon-svg-symbol)
+[![Dependency Status](https://david-dm.org/ryaneof/react-icon-svg-symbol.svg?style=flat-square)](https://david-dm.org/ryaneof/react-icon-svg-symbol)
+[![devDependency Status](https://david-dm.org/ryaneof/react-icon-svg-symbol/dev-status.svg?style=flat-square)](https://david-dm.org/ryaneof/react-icon-svg-symbol#info=devDependencies)
+
+A simple icon component for React using [SVG Symbol](https://css-tricks.com/svg-symbol-good-choice-icons/), it's a presentational component.
 
 - Browsers supported: IE 9+, Chrome, Safari 7.1+, Firefox, and Opera.
 - Able to display cross-origin SVG symbol icons.
@@ -8,7 +12,7 @@ A simple icon component for React using [SVG Symbol](https://css-tricks.com/svg-
 ## Peer Dependencies
 
 ```
-React v0.14.*
+React v15.3.2
 ```
 
 ## Usage
